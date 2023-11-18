@@ -52,3 +52,16 @@ export const deletePost = async (id: string) => {
         await mongoose.disconnect();
     }
 }
+
+export const getPosts = async () => {
+    try {
+        await mongoose.connect(connectionString, {dbName: "blog"})
+        let result = await Post.find()
+        console.log(result);
+        
+    } catch (error) {
+        console.error(error);
+    } finally {
+        await mongoose.disconnect();
+    }
+}
